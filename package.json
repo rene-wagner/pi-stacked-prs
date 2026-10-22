@@ -1,0 +1,40 @@
+{
+  "name": "pi-stacked-prs",
+  "version": "0.1.0",
+  "description": "Pi prompts and skills to plan, implement, and publish stacked Gitea pull requests.",
+  "license": "UNLICENSED",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "stacked-prs",
+    "gitea"
+  ],
+  "type": "module",
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "files": [
+    "agents/",
+    "prompts/",
+    "skills/",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "test:pi": "node scripts/check-pi.mjs",
+    "check": "node --check skills/stacked-pr-plan/scripts/validate-plan.mjs && node --test test/*.test.mjs"
+  },
+  "pi": {
+    "prompts": [
+      "./prompts"
+    ],
+    "skills": [
+      "./skills"
+    ],
+    "subagents": {
+      "agents": [
+        "./agents"
+      ]
+    }
+  }
+}
