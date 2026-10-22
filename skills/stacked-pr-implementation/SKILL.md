@@ -77,6 +77,17 @@ Require the child to stage only the intended phase files.
 Do not use `git add .` when unrelated files can be present.
 Require at least one phase commit for a successful nonempty phase.
 
+## Optional shadow triage
+
+Shadow triage is off by default.
+Enable it only when the user requests it in the current context.
+Read `references/phase-triage.md` before use.
+Use the parent to run the optional OpenRouter Jev classifier after the worker stops.
+Run it after the parent inspects the diff and runs checks, but before final acceptance.
+Classifier hints never replace the acceptance procedure below.
+If triage is skipped or fails, continue the normal acceptance procedure.
+Do not change the worker model, approval rules, or required checks.
+
 ## Accept a phase
 
 1. Wait for the subagent result through the host's completion mechanism.

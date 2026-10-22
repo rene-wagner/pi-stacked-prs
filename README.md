@@ -171,6 +171,37 @@ If this worker is missing from `pi-subagents`, implementation stops instead of s
 Another subagent integration must supply a suitable implementation agent.
 Run `/reload` after you change the bundled agent in an active session.
 
+## Optional phase review triage
+
+Phase review triage is off by default. To try it, tell the parent:
+
+```text
+Enable shadow triage with OpenRouter ~typesafe/jev-latest for this implementation.
+You may send sanitized phase excerpts to OpenRouter and its model provider.
+/stacked-pr-implement <plan UUID>
+```
+
+The parent uses codemode and the configured `OPENROUTER_API_KEY`.
+No OpenAI API key or new runtime dependency is required.
+The phase worker keeps its configured model and thinking level.
+After a worker stops, the parent can classify sanitized phase scope, diff excerpts,
+worker results, and observed check results for three advisory signals:
+
+- Possible scope drift.
+- Possible acceptance evidence gaps.
+- Sensitive changes that need attention.
+
+The parent checks each hint independently. Classifier answers do not accept work,
+change plan checkboxes, skip tests, route workers, or approve publication.
+Missing tools, credentials, API errors, and invalid answers skip triage without
+blocking the normal workflow. No model substitution or automatic retry occurs.
+Inputs are limited to 64000 JSON characters. Omitted content must be identified.
+The parent reports probabilities and coverage limits separately from evidence.
+Review useful findings, false alarms, and latency before making triage routine.
+
+See [the triage procedure](skills/stacked-pr-implementation/references/phase-triage.md)
+for the codemode script and data-sharing rules. Run `/reload` after installation changes.
+
 ## Validate a plan
 
 Run this command from the package directory:
